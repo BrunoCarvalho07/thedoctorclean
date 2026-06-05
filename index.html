@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>The Doctor Clean Penha | Limpeza e Impermeabilização de Estofados</title>
+    <title>The Doctor Clean  | Limpeza e Impermeabilização de Estofados</title>
+    <!-- Configuração do Favicon (Ícone da Aba do Navegador) -->
+    <link rel="icon" type="image/png" href="img/favicon.jpg">
     <meta name="description" content="Especialista em limpeza, higienização e impermeabilização de sofás, colchões e estofados na Penha e região. Remova manchas, ácaros e odores. Solicite um orçamento!">
     <meta name="keywords" content="limpeza de sofa penha, impermeabilização de estofados, higienização de colchão, lavagem de sofa sp, the doctor clean">
     <meta name="robots" content="index, follow">
@@ -14,22 +16,23 @@
     <meta property="og:description" content="Deixe seu sofá novo de novo! Atendimento rápido na Penha e região com produtos aprovados pela ANVISA.">
     <meta property="og:url" content="https://thedoctorclean.com.br/">
     
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <link rel="stylesheet" href="style.css">
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "name": "The Doctor Clean Penha",
+      "name": "The Doctor Clean ",
       "image": "logo em img/logo.png",
       "url": "https://thedoctorclean.com.br/",
-      "telephone": "+5511999999999", 
+      "telephone": "+5511986324574", 
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "São Paulo",
@@ -39,48 +42,11 @@
       }
     }
     </script>
-
-    <style>
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none; /* Esconde o menu por padrão no mobile */
-                flex-direction: column;
-                position: absolute;
-                top: 70px; /* Ajuste conforme a altura da sua navbar */
-                left: 0;
-                width: 100%;
-                background-color: #fff; /* Altere para a cor de fundo do seu site */
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                padding: 20px;
-                box-sizing: border-box;
-                z-index: 999;
-            }
-            
-            /* Classe que o JavaScript vai ativar/desativar */
-            .nav-menu.active {
-                display: flex; 
-            }
-
-            .nav-menu a {
-                padding: 10px 0;
-                border-bottom: 1px solid #eee;
-            }
-            
-            .menu-toggle {
-                display: block; /* Garante que o botão hambúrguer apareça no mobile */
-                background: none;
-                border: none;
-                font-size: 24px;
-                cursor: pointer;
-            }
-        }
-    </style>
 </head>
 <body>
 
     <header class="navbar">
         <div class="container nav-container">
-            <!-- Agrupamento do Logo + Botão para controle correto no mobile -->
             <div class="nav-brand">
                 <a href="#" class="logo">
                     <img src="img/logo3.png" alt="Logo The Doctor Clean Penha">
@@ -96,7 +62,7 @@
                 <a href="#servicos">Serviços</a>
                 <a href="#beneficios">Diferenciais</a>
                 <a href="#depoimentos">Depoimentos</a>
-                <a href="#contato" class="btn-nav">Orçamento Grátis</a>
+                <a href="https://wa.me/5511986324574?text=Ol%C3%A1%21+Gostaria+de+fazer+um+or%C3%A7amento+de+higieniza%C3%A7%C3%A3o." target="_blank" class="btn-nav">Solicite seu Orçamento </a>
             </nav>
         </div>
     </header>
@@ -109,14 +75,22 @@
                     <h1>Seu sofá novo, limpo e protegido de verdade</h1>
                     <p>Eliminamos sujeiras profundas, manchas e ácaros. Atendimento ágil na Zona Leste e toda SP com produtos regulamentados pela ANVISA.</p>
                     <div class="hero-buttons">
-                        <a href="https://web.whatsapp.com/send?phone=5511986324574?text=Olá,%20gostaria de um orçamento para limpeza!" target="_blank" class="btn btn-primary">
+                        <a href="https://wa.me/5511986324574?text=Ol%C3%A1%2C%20gostaria%20de%20um%20or%C3%A7amento%20para%20limpeza!" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
                             <i class="fab fa-whatsapp"></i> Chamar no WhatsApp
                         </a>
                         <a href="#servicos" class="btn btn-secondary">Ver Serviços</a>
                     </div>
                 </div>
+                
+                <!-- ALTERADO: Criada a estrutura interna (.hero-image-slider) para segurar as fotos lado a lado -->
                 <div class="hero-image" data-aos="fade-left" data-aos-duration="1000">
-                    <img src="img/sofalimpo.jpeg" alt="Sofá Higienizado - The Doctor Clean Penha" class="img">
+                    <div class="hero-image-slider">
+                        <img src="img/sofalimpo.jpeg" alt="Sofá Higienizado 1 - The Doctor Clean Penha" class="img-sofa">
+                        <img src="img/sofa4.jpg" alt="Sofá Higienizado 1 - The Doctor Clean Penha" class="img-sofa">
+                        <img src="img/poltrona1.jpg" alt="Sofá Higienizado 2 - The Doctor Clean Penha" class="img-sofa">
+                        <img src="img/sofa5.jpg" alt="Sofá Higienizado 3 - The Doctor Clean Penha" class="img-sofa">
+                        <img src="img/colchao2.jpg" alt="Sofá Higienizado 3 - The Doctor Clean Penha" class="img-sofa">
+                    </div>
                 </div>
             </div>
         </section>
@@ -125,31 +99,43 @@
             <div class="container">
                 <div class="section-title" data-aos="fade-up">
                     <h2>Nossos Serviços Especializados</h2>
-                    <p>Cuidado profissional para o bem-estar e a saúde da sua família.</p>
+                    <p>Clique em qualquer serviço para abrir o carrossel de fotos dos nossos resultados reais.</p>
                 </div>
                 <div class="services-grid">
-                    <article class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <article class="service-card" data-aos="fade-up" data-aos-delay="100" data-service="sofa">
                         <div class="service-icon"><i class="fas fa-couch"></i></div>
                         <h3>Limpeza de Sofás</h3>
                         <p>Remoção de manchas, sujeira acumulada pelo tempo e eliminação completa de ácaros e bactérias do seu estofado.</p>
                     </article>
 
-                    <article class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <article class="service-card" data-aos="fade-up" data-aos-delay="150" data-service="poltronas">
+                        <div class="service-icon"><i class="fas fa-chair"></i></div>
+                        <h3>Limpeza de Poltronas</h3>
+                        <p>Higienização profunda de poltronas e cadeiras estofadas, removendo odores, encardidos e poeira acumulada.</p>
+                    </article>
+
+                    <article class="service-card" data-aos="fade-up" data-aos-delay="200" data-service="impermeabilizacao">
                         <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
                         <h3>Impermeabilização</h3>
                         <p>Proteção avançada contra derramamento de líquidos, poeira e manchas, aumentando a vida útil do tecido.</p>
                     </article>
 
-                    <article class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <article class="service-card" data-aos="fade-up" data-aos-delay="300" data-service="colchao">
                         <div class="service-icon"><i class="fas fa-bed"></i></div>
                         <h3>Higienização de Colchões</h3>
-                        <p>Noites de sono mais saudáveis. Tratamento profundo contra microrganismos causadores de allergies.</p>
+                        <p>Noites de acesso e sono mais saudáveis. Tratamento profundo contra microrganismos causadores de allergies.</p>
                     </article>
 
-                    <article class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <article class="service-card" data-aos="fade-up" data-aos-delay="400" data-service="automotiva">
                         <div class="service-icon"><i class="fas fa-car"></i></div>
                         <h3>Higienização Automotiva</h3>
-                        <p>Limpeza completa dos bancos e carpetes do seu veículo, devolvendo o aspect de fábrica.</p>
+                        <p>Limpeza completa dos bancos e carpetes do seu veículo, devolvendo o aspecto de fábrica.</p>
+                    </article>
+
+                    <article class="service-card" data-aos="fade-up" data-aos-delay="500" data-service="domesticos">
+                        <div class="service-icon"><i class="fas fa-broom"></i></div>
+                        <h3>Serviços Domésticos</h3>
+                        <p>Serviços domésticos com praticidade e qualidade na manutenção do seu lar, trazendo soluções eficientes para o seu bem-estar.</p>
                     </article>
                 </div>
             </div>
@@ -179,36 +165,143 @@
             </div>
         </section>
 
+        <section id="depoimentos" class="testimonials">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2>
+                        <a href="https://goo.gl/maps/s3yxCU1VLDG4CuB1A" target="_blank" rel="noopener noreferrer" class="google-title-link">
+                            O que dizem nossos clientes no 
+                            <span class="google-text">
+                                <span style="color: #4285F4;">G</span><span style="color: #EA4335;">o</span><span style="color: #FBBC05;">o</span><span style="color: #4285F4;">g</span><span style="color: #34A853;">l</span><span style="color: #EA4335;">e</span>
+                            </span>
+                        </a>
+                    </h2>
+                    <p>A satisfação de quem já transformou a saúde e a beleza do seu estofado.</p>
+                </div>
+                
+                <div class="testimonials-wrapper" data-aos="fade-up" data-aos-delay="200">
+                    <button class="slider-arrow arrow-left" id="prevBtn" aria-label="Avaliação anterior">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
+                    <div class="testimonials-slider" id="testimonialSlider">
+                        <div class="testimonial-card">
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p>"Super indico, rapidez no atendimento desde o primeiro contato, super capricho na execução, bem detalhado com finalização perfeita, achei os produtos utilizados de excelente qualidade, inclusive o " perfume "que é utilizado."</p>
+                            <h5>Adriana Salvagim</h5>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p>"Trabalho impecável e excelente profissional , meu sofá parecia que tinha acabado de sair da loja,   não sei da onde que saiu tanta sujeira do meu sofá… Fora a pontualidade veio no horário certo que tínhamos combinado e deixou tudo organizado no local , com certeza eu indico o trabalho deles."</p>
+                            <h5>Fabio Gomes </h5>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p>"Ótima empresa super recomendo, meu sofá ficou novo de novo!"</p>
+                            <h5>Fernanda Maria  </h5>
+                        
+                        </div>
+                    
+                        <div class="testimonial-card">
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p>"Atendimento cordial, claro e solicito. Entrega do serviço de acordo com o prometido, ganhei um móvel novo sem precisar trocar!! Impecável! Prestador super educado e bem preparado, indico de olhos fechados, me tornei cliente!"</p>
+                            <h5>Jade Reis </h5>
+                        
+                        </div>
+        
+
+                    <button class="slider-arrow arrow-right" id="nextBtn" aria-label="Próxima avaliação">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="testimonials-cta" data-aos="fade-up" data-aos-delay="200">
+                    <a href="https://goo.gl/maps/s3yxCU1VLDG4CuB1A" target="_blank" rel="noopener noreferrer" class="btn-google">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 5px;">
+                            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.92h6.61c-.29 1.53-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.65-5.17 3.65-8.58z"/>
+                            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.11 0-5.74-2.11-6.68-4.96H1.21v3.15C3.18 21.88 7.31 24 12 24z"/>
+                            <path fill="#FBBC05" d="M5.32 14.24A7.16 7.16 0 0 1 4.93 12c0-.79.13-1.57.39-2.31V6.54H1.21A11.94 11.94 0 0 0 0 12c0 1.92.45 3.74 1.21 5.39l4.11-3.15z"/>
+                            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.18 2.12 1.21 5.46l4.11 3.15c.94-2.85 3.57-4.86 12-4.86z"/>
+                        </svg>
+                        Ver todas as avaliações no Google
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <section id="contato" class="cta-bottom" data-aos="fade-up">
             <div class="container">
-                <h2>Pronto para renovar o seu estofado?</h2>
+                <h2>Pronto para renovar o seu lar?</h2>
                 <p>Fale conosco agora e receba um orçamento sem compromisso.</p>
-                <a href="https://wa.me/5511986324574?text=Olá,%20quero%20um%20orçamento!" target="_blank" class="btn btn-primary btn-large">
+                <a href="https://wa.me/5511986324574?text=Ol%C3%A1%2C%20quero%20um%20or%C3%A7amento!" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large">
                     <i class="fab fa-whatsapp"></i> Solicitar Orçamento via WhatsApp
                 </a>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container footer-container">
-            <p>&copy; 2026 The Doctor Clean Penha. Todos os direitos reservados.</p>
+    <div class="gallery-modal" id="galleryModal" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal" aria-label="Fechar Janela">&times;</button>
+            <h3 class="modal-title" id="modalTitle">Fotos do Serviço</h3>
+            
+            <div class="modal-carousel-wrapper">
+                <button class="modal-arrow modal-arrow-left" id="modalPrevBtn" aria-label="Foto anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="modal-photos-slider" id="modalPhotosSlider"></div>
+
+                <button class="modal-arrow modal-arrow-right" id="modalNextBtn" aria-label="Próxima foto">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
         </div>
-    </footer-->
+    </div>
 
-    <a href="https://wa.me/5511986324574?text=Olá!" class="whatsapp-float" target="_blank" aria-label="Contato pelo WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <footer>
+    <div class="container footer-container">
+        <p>&copy; 2026 The Doctor Clean Limpeza em Geral. Todos os direitos reservados.</p>
+        
+        <div class="footer-socials">
+            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="instagram" aria-label="Siga-nos no Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" class="facebook" aria-label="Curta nossa página no Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://goo.gl/maps/s3yxCU1VLDG4CuB1A" target="_blank" rel="noopener noreferrer" class="google" aria-label="Nossa localização no Google">
+                <i class="fab fa-google"></i>
+            </a>
+        </div>
 
-    <!-- Bibliotecas e Scripts Externos -->
+        <p class="dev-credits">
+            Desenvolvido por <a href="https://www.linkedin.com/in/bruno-carvalho-silva-77231219a/" target="_blank" rel="noopener noreferrer"> Bruno Carvalho </a>
+        </p>
+    </div>
+</footer>
+
+    <div class="social-floats">
+        <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="float-btn float-instagram" aria-label="Acesse nosso Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/5511986324574?text=Ol%C3%A1!" target="_blank" rel="noopener noreferrer" class="float-btn float-whatsapp" aria-label="Contato pelo WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            once: true
-        });
-    </script>
-
-    <!-- Seu arquivo JavaScript separado -->
+    
     <script src="script.js"></script>
 </body>
 </html>
