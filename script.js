@@ -152,3 +152,23 @@ if (slider && prevBtn && nextBtn) {
     nextBtn.addEventListener('click', () => { slider.scrollLeft += getScrollAmount(); });
     prevBtn.addEventListener('click', () => { slider.scrollLeft -= getScrollAmount(); });
 }
+// ==========================================================================
+// LÓGICA DO SLIDER INTERATIVO - ANTES E DEPOIS
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const sliderInput = document.getElementById('change-slider');
+    const imageBefore = document.querySelector('.image-before');
+    const sliderLine = document.querySelector('.slider-button-line');
+
+    if (sliderInput && imageBefore && sliderLine) {
+        sliderInput.addEventListener('input', (e) => {
+            const sliderValue = e.target.value;
+
+            // Atualiza a largura da imagem da frente (Antes)
+            imageBefore.style.width = `${sliderValue}%`;
+
+            // Atualiza a posição da linha vertical e do botão central
+            sliderLine.style.left = `${sliderValue}%`;
+        });
+    }
+});

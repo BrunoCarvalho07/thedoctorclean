@@ -813,3 +813,147 @@ footer {
     .testimonials-wrapper { padding: 0 10px; }
     .slider-arrow { display: none; } /* Oculta as setas em telas pequenas para favorecer o swipe por toque */
 }
+/* ==========================================================================
+   SEÇÃO ANTES E DEPOIS INTERATIVO
+   ========================================================================== */
+.comparison-section {
+    padding: 80px 0;
+    background-color: #f4f9fc; /* Um fundo azulado bem leve, remetendo a limpeza */
+}
+
+.comparison-slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 500px;
+    margin: 40px auto 0 auto;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    user-select: none;
+}
+
+/* Garante responsividade em tablets e celulares */
+@media (max-width: 768px) {
+    .comparison-section {
+        padding: 60px 0;
+    }
+    .comparison-slider-container {
+        height: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    .comparison-slider-container {
+        height: 260px;
+    }
+}
+
+/* Configuração geral das caixas de imagem */
+.image-after, .image-before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.image-after img, .image-before img {
+    position: absolute;
+    width: 800px; /* Deve bater com o max-width do container para não distorcer */
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Ajuste proporcional para as imagens internas não quebrarem o alinhamento */
+@media (max-width: 800px) {
+    .image-after img, .image-before img {
+        width: 100vw;
+        max-width: 800px;
+    }
+}
+
+/* Customização do ANTES (fica por cima e ganha o recorte do JS) */
+.image-before {
+    width: 50%; /* Inicial em 50% */
+    overflow: hidden;
+    z-index: 2;
+}
+
+/* Estilização das tags flutuantes (Antes / Depois) */
+.label-tag {
+    position: absolute;
+    bottom: 20px;
+    padding: 6px 15px;
+    background-color: rgba(0, 0, 0, 0.65);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.label-before {
+    left: 20px;
+}
+
+.label-after {
+    right: 20px;
+}
+
+/* O INPUT SLIDER (Invisível por cima de tudo para pegar o clique/arraste) */
+.comparison-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    opacity: 0;
+    cursor: ew-resize;
+    z-index: 5;
+    margin: 0;
+}
+
+/* BARRA DE CONTROLE VISUAL */
+.slider-button-line {
+    position: absolute;
+    top: 0;
+    left: 50%; /* Inicial em 50% */
+    width: 4px;
+    height: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    z-index: 4;
+    pointer-events: none;
+    transform: translateX(-50%);
+}
+
+/* O BOTÃO REDONDO DA BARRA */
+.slider-custom-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45px;
+    height: 45px;
+    background-color: #00a896; /* Cor verde/turquesa que remete a higienização/saúde */
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: 3px solid #ffffff;
+    transition: background-color 0.2s ease;
+}
+
+/* Efeito de hover quando o usuário passa o mouse na seção */
+.comparison-slider-container:hover .slider-custom-button {
+    background-color: #028090; /* Tom azul escuro/claro alternativo */
+}
