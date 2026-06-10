@@ -8,11 +8,11 @@ AOS.init({ once: true });
 // ==========================================================================
 const servicePhotos = {
     sofa: { title: "Resultados: Limpeza de Sofás", images: ["img/sofa1.jpg", "img/sofa2.jpg", "img/sofa3.jpg", "img/sofa4.jpg", "img/sofa5.jpg"] },
-    poltronas: { title: "Resultados: Limpeza de Poltronas", images: ["img/poltrona1.jpg", "img/poltrona2.jpg"] },
-    impermeabilizacao: { title: "Resultados: Impermeabilização", images: ["img/imper1.jpeg", "img/imper2.jpeg", "img/imper3.jpeg"] },
+    poltronas: { title: "Resultados: Limpeza de Poltronas", images: ["img/poltrona1.jpg", "img/poltrona2.jpg ","img/poltrona3.jpg"] },
+    impermeabilizacao: { title: "Resultados: Impermeabilização", images: ["img/Impermeabilizacao.png", "img/imper2.jpeg", "img/imper3.jpeg"] },
     colchao: { title: "Resultados: Higienização de Colchões", images: ["img/colchao1.jpg", "img/colchao2.jpg"] },
-    automotiva: { title: "Resultados: Higienização Automotiva", images: ["img/car1.jpeg", "img/car2.jpeg", "img/car3.jpeg"] },
-    domesticos: { title: "Resultados: Serviços Domésticos", images: ["img/casa1.jpeg", "img/casa2.jpeg"] }
+    automotiva: { title: "Resultados: Higienização Automotiva", images: ["img/carro1.jpg", "img/carro2.jpg", "img/carro3.jpg","img/carro4.jpg","img/carro5.jpg"] },
+    domesticos: { title: "Resultados: Serviços Domésticos", images: ["img/limpezacasa.png", "img/limpezacasa1.png", "img/limpezacasa2.png " ] }
 };
 
 // ==========================================================================

@@ -106,21 +106,27 @@ body {
 }
 
 /* ==========================================================================
-   HERO SECTION
+   (OTIMIZADO PARA PC - ENCAIXE SEM CORTES)
    ========================================================================== */
 .hero {
     background-color: var(--accent);
-    padding: 80px 0;
+    padding: 60px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .hero-container {
     display: flex;
     align-items: center;
     gap: 40px;
+    width: 90%;             
+    max-width: 1200px;      
+    margin: 0 auto;         
 }
 
 .hero-content {
-    flex: 1;
+    flex: 1.1;             
 }
 
 .badge {
@@ -181,20 +187,24 @@ body {
     border: 2px solid var(--primary-dark);
 }
 
+/* Container do Carrossel no PC - Ajuste Fino */
 .hero-image {
-    flex: 1;
-    max-width: 550px;
+    flex: 0.9;
+    max-width: 520px;
     width: 100%;
+    height: 420px; 
     overflow: hidden; 
     border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0px 15px 30px rgba(4, 120, 87, 0.15);
 }
 
 .hero-image-slider {
     display: flex;
     width: 100%;
+    height: 100%;
     overflow-x: auto;
     scroll-behavior: smooth;
     scrollbar-width: none; 
@@ -205,13 +215,14 @@ body {
     display: none; 
 }
 
+/* Ajustado para preencher de forma elegante no PC respeitando os textos internos */
 .hero-image-slider img, .img-sofa {
     flex: 0 0 100%; 
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: fill; /* Garante o encaixe milimétrico dentro do box do PC */
     border-radius: 20px;
-    filter: drop-shadow(0px 15px 20px rgba(4, 120, 87, 0.15)); 
-    object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
 /* ==========================================================================
@@ -525,7 +536,6 @@ body {
     font-weight: 600;
 }
 
-/* FUNÇÃO E ANIMAÇÃO DE HOVER ATUALIZADA (Fica verde suave ao passar o mouse) */
 .slider-arrow {
     position: absolute;
     top: 50%;
@@ -543,7 +553,6 @@ body {
     font-size: 18px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     z-index: 10;
-    /* Transição temporizada para suavizar o ganho de cor e escala */
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -551,7 +560,7 @@ body {
     background-color: var(--primary-dark); 
     color: #fff; 
     border-color: var(--primary-dark); 
-    transform: translateY(-50%) scale(1.08); /* Aumenta sutilmente sem perder o alinhamento vertical */
+    transform: translateY(-50%) scale(1.08); 
 }
 
 .arrow-left { left: -10px; }
@@ -679,7 +688,116 @@ footer {
 .float-instagram { background: #E1306C; }
 
 /* ==========================================================================
-   RESPONSIVIDADE (MOBILE & TABLET)
+   SEÇÃO ANTES E DEPOIS INTERATIVO
+   ========================================================================== */
+.comparison-section {
+    padding: 80px 0;
+    background-color: #f4f9fc; 
+}
+
+.comparison-slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 500px;
+    margin: 40px auto 0 auto;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    user-select: none;
+}
+
+.image-after, .image-before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.image-after img, .image-before img {
+    position: absolute;
+    width: 800px; 
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.image-before {
+    width: 50%; 
+    overflow: hidden;
+    z-index: 2;
+}
+
+.label-tag {
+    position: absolute;
+    bottom: 20px;
+    padding: 6px 15px;
+    background-color: rgba(0, 0, 0, 0.65);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.label-before { left: 20px; }
+.label-after { right: 20px; }
+
+.comparison-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    opacity: 0;
+    cursor: ew-resize;
+    z-index: 5;
+    margin: 0;
+}
+
+.slider-button-line {
+    position: absolute;
+    top: 0;
+    left: 50%; 
+    width: 4px;
+    height: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    z-index: 4;
+    pointer-events: none;
+    transform: translateX(-50%);
+}
+
+.slider-custom-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45px;
+    height: 45px;
+    background-color: #00a896; 
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: 3px solid #ffffff;
+    transition: background-color 0.2s ease;
+}
+
+.comparison-slider-container:hover .slider-custom-button {
+    background-color: #028090; 
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE GERAL (MOBILE & TABLET ATUALIZADOS)
    ========================================================================== */
 @media (max-width: 992px) { 
     .testimonials-slider .testimonial-card { 
@@ -755,27 +873,31 @@ footer {
     }
 
     .hero {
-        padding: 30px 0;
+        padding: 20px 0; /* Encurtado para aproximar do topo */
     }
 
     .hero-container {
         flex-direction: column-reverse;
         text-align: center;
-        gap: 20px;
+        gap: 25px;
+        width: 95%; /* Alarga o bloco principal no mobile */
     }
 
+    /* Ajuste Mobile - Imagem maior usando as bordas da tela */
     .hero-image {
-        max-width: 340px !important;     
-        width: 90% !important;           
-        margin: 0 auto 10px auto !important; 
-        border-radius: 20px;
-        box-shadow: 0px 8px 20px rgba(4, 120, 87, 0.1);
+        max-width: 100% !important;     
+        width: 100% !important;          
+        margin: 0 auto 5px auto !important; 
+        height: auto !important; 
+        border-radius: 16px;
+        box-shadow: 0px 6px 15px rgba(4, 120, 87, 0.1);
     }
 
+    /* Proporção ideal para manter o texto legível sem cortar as laterais */
     .hero-image-slider img, .img-sofa {
-        height: 200px !important;        
-        object-fit: cover !important;    
-        border-radius: 20px;
+        height: 250px !important;        
+        object-fit: fill !important;    
+        border-radius: 16px;
     }
 
     .hero-content h1 {
@@ -811,30 +933,8 @@ footer {
     .modal-arrow-right { right: -5px; }
 
     .testimonials-wrapper { padding: 0 10px; }
-    .slider-arrow { display: none; } /* Oculta as setas em telas pequenas para favorecer o swipe por toque */
-}
-/* ==========================================================================
-   SEÇÃO ANTES E DEPOIS INTERATIVO
-   ========================================================================== */
-.comparison-section {
-    padding: 80px 0;
-    background-color: #f4f9fc; /* Um fundo azulado bem leve, remetendo a limpeza */
-}
+    .slider-arrow { display: none; } 
 
-.comparison-slider-container {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    height: 500px;
-    margin: 40px auto 0 auto;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-    user-select: none;
-}
-
-/* Garante responsividade em tablets e celulares */
-@media (max-width: 768px) {
     .comparison-section {
         padding: 60px 0;
     }
@@ -843,30 +943,6 @@ footer {
     }
 }
 
-@media (max-width: 480px) {
-    .comparison-slider-container {
-        height: 260px;
-    }
-}
-
-/* Configuração geral das caixas de imagem */
-.image-after, .image-before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.image-after img, .image-before img {
-    position: absolute;
-    width: 800px; /* Deve bater com o max-width do container para não distorcer */
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* Ajuste proporcional para as imagens internas não quebrarem o alinhamento */
 @media (max-width: 800px) {
     .image-after img, .image-before img {
         width: 100vw;
@@ -874,86 +950,8 @@ footer {
     }
 }
 
-/* Customização do ANTES (fica por cima e ganha o recorte do JS) */
-.image-before {
-    width: 50%; /* Inicial em 50% */
-    overflow: hidden;
-    z-index: 2;
-}
-
-/* Estilização das tags flutuantes (Antes / Depois) */
-.label-tag {
-    position: absolute;
-    bottom: 20px;
-    padding: 6px 15px;
-    background-color: rgba(0, 0, 0, 0.65);
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 4px;
-    z-index: 3;
-    pointer-events: none;
-}
-
-.label-before {
-    left: 20px;
-}
-
-.label-after {
-    right: 20px;
-}
-
-/* O INPUT SLIDER (Invisível por cima de tudo para pegar o clique/arraste) */
-.comparison-slider {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    opacity: 0;
-    cursor: ew-resize;
-    z-index: 5;
-    margin: 0;
-}
-
-/* BARRA DE CONTROLE VISUAL */
-.slider-button-line {
-    position: absolute;
-    top: 0;
-    left: 50%; /* Inicial em 50% */
-    width: 4px;
-    height: 100%;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    z-index: 4;
-    pointer-events: none;
-    transform: translateX(-50%);
-}
-
-/* O BOTÃO REDONDO DA BARRA */
-.slider-custom-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 45px;
-    height: 45px;
-    background-color: #00a896; /* Cor verde/turquesa que remete a higienização/saúde */
-    color: #ffffff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    border: 3px solid #ffffff;
-    transition: background-color 0.2s ease;
-}
-
-/* Efeito de hover quando o usuário passa o mouse na seção */
-.comparison-slider-container:hover .slider-custom-button {
-    background-color: #028090; /* Tom azul escuro/claro alternativo */
+@media (max-width: 480px) {
+    .comparison-slider-container {
+        height: 260px;
+    }
 }
