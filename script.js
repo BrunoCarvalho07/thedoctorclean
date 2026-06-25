@@ -1,174 +1,203 @@
-// ==========================================================================
-// INICIALIZAÇÃO DE BIBLIOTECAS (AOS)
-// ==========================================================================
-AOS.init({ once: true });
+// INITIALIZE AOS (ANIMATION ON SCROLL)
+AOS.init({
+    once: true,
+    mirror: false
+});
 
-// ==========================================================================
-// BANCO DE IMAGENS DOS SERVIÇOS (MODAL GALERIA)
-// ==========================================================================
-const servicePhotos = {
-    sofa: { title: "Resultados: Limpeza de Sofás", images: ["img/sofa1.jpg", "img/sofa2.jpg", "img/sofa3.jpg", "img/sofa4.jpg", "img/sofa5.jpg"] },
-    poltronas: { title: "Resultados: Limpeza de Poltronas", images: ["img/poltrona1.jpg", "img/poltrona2.jpg ","img/poltrona3.jpg"] },
-    impermeabilizacao: { title: "Resultados: Impermeabilização", images: ["img/Impermeabilizacao.png", "img/imper2.jpeg", "img/imper3.jpeg"] },
-    colchao: { title: "Resultados: Higienização de Colchões", images: ["img/colchao1.jpg", "img/colchao2.jpg"] },
-    automotiva: { title: "Resultados: Higienização Automotiva", images: ["img/carro1.jpg", "img/carro2.jpg", "img/carro3.jpg","img/carro4.jpg","img/carro5.jpg"] },
-    domesticos: { title: "Resultados: Serviços Domésticos", images: ["img/limpezacasa.png", "img/limpezacasa1.png", "img/limpezacasa2.png " ] }
-};
-
-// ==========================================================================
-// CARROSSEL AUTOMÁTICO DA HERO (FOTOS DO SOFÁ NO TOPO)
-// ==========================================================================
-const heroSlider = document.querySelector('.hero-image-slider');
-
-if (heroSlider) {
-    setInterval(() => {
-        const firstImg = heroSlider.querySelector('img');
-        if (firstImg) {
-            const imgWidth = firstImg.clientWidth;
-            
-            // Se chegou ao final do scroll, volta para o início de forma suave
-            if (heroSlider.scrollLeft + heroSlider.clientWidth >= heroSlider.scrollWidth - 5) {
-                heroSlider.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
-                // Caso contrário, avança para a próxima imagem da fila
-                heroSlider.scrollBy({ left: imgWidth, behavior: 'smooth' });
-            }
-        }
-    }, 3000); // Executa a transição a cada 3000 milissegundos (3 segundos)
-}
-
-// ==========================================================================
-// CONTROLE DO MENU RESPONSIVO MOBILE
-// ==========================================================================
+// MOBILE MENU TOGGLE
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
-const menuLinks = document.querySelectorAll('.nav-menu a');
 
 if (menuToggle && navMenu) {
-    // Abre e fecha o menu ao clicar no botão hambúrguer
     menuToggle.addEventListener('click', () => {
-        const isOpen = navMenu.classList.toggle('active');
-        menuToggle.setAttribute('aria-expanded', isOpen);
-        
-        // Alterna o ícone entre barras e "X" para fechar
-        const icon = menuToggle.querySelector('i');
-        if (isOpen) {
-            icon.className = 'fas fa-times';
-        } else {
-            icon.className = 'fas fa-bars';
-        }
+        navMenu.classList.toggle('active');
+        const isExpanded = navMenu.classList.contains('active');
+        menuToggle.setAttribute('aria-expanded', isExpanded);
     });
 
-    // Fecha o menu automaticamente quando o usuário clica em um link
-    menuLinks.forEach(link => {
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-menu a').forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
             menuToggle.setAttribute('aria-expanded', 'false');
-            menuToggle.querySelector('i').className = 'fas fa-bars';
         });
     });
-
-    // Fecha o menu se o usuário clicar em qualquer área vazia fora dele
-    document.addEventListener('click', (e) => {
-        if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-            navMenu.classList.remove('active');
-            menuToggle.setAttribute('aria-expanded', 'false');
-            menuToggle.querySelector('i').className = 'fas fa-bars';
-        }
-    });
 }
 
-// ==========================================================================
-// LÓGICA DO CARROSSEL DA JANELA MODAL (GALERIA DE FOTOS)
-// ==========================================================================
-const modal = document.getElementById('galleryModal');
-const modalTitle = document.getElementById('modalTitle');
-const modalPhotosSlider = document.getElementById('modalPhotosSlider');
-const closeModal = document.getElementById('closeModal');
-const serviceCards = document.querySelectorAll('.service-card');
-const modalPrevBtn = document.getElementById('modalPrevBtn');
-const modalNextBtn = document.getElementById('modalNextBtn');
+// DARK MODE / THEME TOGGLE FUNCTIONALITY
+const themeToggleBtn = document.getElementById('theme-toggle');
+if (themeToggleBtn) {
+    const icon = themeToggleBtn.querySelector('i');
+    
+    // Check local storage for theme persistence
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+        if (icon) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    }
 
-serviceCards.forEach(card => {
-    card.addEventListener('click', () => {
-        const serviceKey = card.getAttribute('data-service');
-        const data = servicePhotos[serviceKey];
+    themeToggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-theme');
         
-        if (data) {
-            modalTitle.innerText = data.title;
-            modalPhotosSlider.innerHTML = '';
-            modalPhotosSlider.scrollLeft = 0;
-            
-            // Renderiza as fotos dinamicamente no slider
-            data.images.forEach(src => {
-                const img = document.createElement('img');
-                img.src = src;
-                img.alt = data.title;
-                // Fallback caso a imagem dê erro ao carregar localmente
-                img.onerror = () => { img.src = 'https://via.placeholder.com/600x400?text=The+Doctor+Clean'; };
-                modalPhotosSlider.appendChild(img);
-            });
-            
-            modal.classList.add('active');
-            modal.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden'; // Bloqueia scroll da página ao fundo
+        if (document.body.classList.contains('dark-theme')) {
+            localStorage.setItem('theme', 'dark');
+            if (icon) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        } else {
+            localStorage.setItem('theme', 'light');
+            if (icon) {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
         }
-    });
-});
-
-// Navegação por setas dentro da modal de fotos
-if (modalNextBtn && modalPrevBtn && modalPhotosSlider) {
-    modalNextBtn.addEventListener('click', () => {
-        const photoWidth = modalPhotosSlider.querySelector('img')?.clientWidth || 400;
-        modalPhotosSlider.scrollLeft += photoWidth;
-    });
-    modalPrevBtn.addEventListener('click', () => {
-        const photoWidth = modalPhotosSlider.querySelector('img')?.clientWidth || 400;
-        modalPhotosSlider.scrollLeft -= photoWidth;
     });
 }
 
-// Fechamento da janela modal
-const funcCloseModal = () => {
-    modal.classList.remove('active');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-};
-if (closeModal) closeModal.addEventListener('click', funcCloseModal);
-if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) funcCloseModal(); });
+// BEFORE/AFTER INTERACTIVE SLIDER
+const slider = document.getElementById('change-slider');
+const beforeImage = document.querySelector('.image-before');
+const buttonLine = document.querySelector('.slider-button-line');
 
-// ==========================================================================
-// LÓGICA DO CARROSSEL DE DEPOIMENTOS
-// ==========================================================================
-const slider = document.getElementById('testimonialSlider');
+if (slider && beforeImage && buttonLine) {
+    slider.addEventListener('input', (e) => {
+        const value = e.target.value;
+        beforeImage.style.width = `${value}%`;
+        buttonLine.style.left = `${value}%`;
+    });
+}
+
+// TESTIMONIALS CAROUSEL SLIDER
+const sliderContainer = document.getElementById('testimonialSlider');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 
-if (slider && prevBtn && nextBtn) {
+if (sliderContainer && prevBtn && nextBtn) {
     const getScrollAmount = () => {
-        const firstCard = slider.querySelector('.testimonial-card');
-        return firstCard ? firstCard.clientWidth + 24 : 340; // Largura do card + espaçamento (gap)
+        const card = sliderContainer.querySelector('.testimonial-card');
+        if (card) {
+            const cardWidth = card.getBoundingClientRect().width;
+            const style = window.getComputedStyle(sliderContainer);
+            const gap = parseFloat(style.gap) || 24;
+            return cardWidth + gap;
+        }
+        return 350; 
     };
-    nextBtn.addEventListener('click', () => { slider.scrollLeft += getScrollAmount(); });
-    prevBtn.addEventListener('click', () => { slider.scrollLeft -= getScrollAmount(); });
+
+    nextBtn.addEventListener('click', () => {
+        sliderContainer.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+    });
+
+    prevBtn.addEventListener('click', () => {
+        sliderContainer.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+    });
 }
-// ==========================================================================
-// LÓGICA DO SLIDER INTERATIVO - ANTES E DEPOIS
-// ==========================================================================
-document.addEventListener('DOMContentLoaded', () => {
-    const sliderInput = document.getElementById('change-slider');
-    const imageBefore = document.querySelector('.image-before');
-    const sliderLine = document.querySelector('.slider-button-line');
 
-    if (sliderInput && imageBefore && sliderLine) {
-        sliderInput.addEventListener('input', (e) => {
-            const sliderValue = e.target.value;
+// GALLERY MODAL DATA BANK
+const servicePhotos = {
+    sofa: { 
+        title: "Resultados: Limpeza de Sofás", 
+        images: ["img/sofa1.jpg", "img/sofa2.jpg", "img/sofa3.jpg", "img/sofa4.jpg", "img/sofa5.jpg"] 
+    },
+    poltronas: { 
+        title: "Resultados: Limpeza de Poltronas", 
+        images: ["img/poltrona1.jpg", "img/poltrona2.jpg", "img/poltrona3.jpg"] 
+    },
+    impermeabilizacao: { 
+        title: "Resultados: Impermeabilização", 
+        images: ["img/hipermia.jpeg", "img/Impermeabilizacao.png"] 
+    },
+    colchao: { 
+        title: "Resultados: Higienização de Colchões", 
+        images: ["img/colchao1.jpg", "img/colchao2.jpg"] 
+    },
+    automotiva: { 
+        title: "Resultados: Higienização Automotiva", 
+        images: ["img/carro1.jpg", "img/carro2.jpg", "img/carro3.jpg", "img/carro4.jpg", "img/carro5.jpg"] 
+    },
+    domesticos: { 
+        title: "Resultados: Serviços Domésticos", 
+        images: ["img/limpezacasa.png", "img/limpezacasa1.png", "img/limpezacasa2.png"] 
+    }
+};
 
-            // Atualiza a largura da imagem da frente (Antes)
-            imageBefore.style.width = `${sliderValue}%`;
 
-            // Atualiza a posição da linha vertical e do botão central
-            sliderLine.style.left = `${sliderValue}%`;
+// MODAL FUNCTIONALITY LOGIC (CORRIGIDO)
+const modal = document.getElementById('galleryModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalPhotosSlider = document.getElementById('modalPhotosSlider');
+const closeModalBtn = document.getElementById('closeModal');
+const modalPrevBtn = document.getElementById('modalPrevBtn');
+const modalNextBtn = document.getElementById('modalNextBtn');
+
+let currentServicePhotos = [];
+
+if (modal && modalPhotosSlider && closeModalBtn) {
+    document.querySelectorAll('.service-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const serviceKey = card.getAttribute('data-service');
+            
+            // Correção aqui: acessando o objeto correto 'servicePhotos'
+            const serviceData = servicePhotos[serviceKey];
+            
+            if (!serviceData) {
+                const serviceTitle = card.querySelector('h3').innerText;
+                modalTitle.innerText = `Resultados: ${serviceTitle}`;
+                currentServicePhotos = [];
+            } else {
+                modalTitle.innerText = serviceData.title;
+                currentServicePhotos = serviceData.images;
+            }
+            
+            modalPhotosSlider.innerHTML = '';
+            
+            if (currentServicePhotos.length === 0) {
+                modalPhotosSlider.innerHTML = '<p style="padding: 20px; color:#666; text-align:center; width:100%;">Brevemente adicionaremos fotos para este serviço!</p>';
+                if (modalPrevBtn) modalPrevBtn.style.display = 'none';
+                if (modalNextBtn) modalNextBtn.style.display = 'none';
+            } else {
+                currentServicePhotos.forEach(photoUrl => {
+                    const img = document.createElement('img');
+                    // Correção aqui: photoUrl já é a string com o caminho da imagem
+                    img.src = photoUrl; 
+                    img.alt = modalTitle.innerText;
+                    modalPhotosSlider.appendChild(img);
+                });
+                
+                if (modalPrevBtn) modalPrevBtn.style.display = currentServicePhotos.length > 1 ? 'flex' : 'none';
+                if (modalNextBtn) modalNextBtn.style.display = currentServicePhotos.length > 1 ? 'flex' : 'none';
+            }
+            
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    const closeModalFunc = () => {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    };
+
+    closeModalBtn.addEventListener('click', closeModalFunc);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModalFunc();
+    });
+
+    if (modalNextBtn && modalPrevBtn) {
+        modalNextBtn.addEventListener('click', () => {
+            const width = modalPhotosSlider.getBoundingClientRect().width;
+            modalPhotosSlider.scrollBy({ left: width, behavior: 'smooth' });
+        });
+
+        modalPrevBtn.addEventListener('click', () => {
+            const width = modalPhotosSlider.getBoundingClientRect().width;
+            modalPhotosSlider.scrollBy({ left: -width, behavior: 'smooth' });
         });
     }
-});
+}

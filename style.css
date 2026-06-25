@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CONFIGURAÇÕES GERAIS / RESET
+   CONFIGURAÇÕES GERAIS / RESET & VARIÁVEIS DE TEMA
    ========================================================================== */
 * {
     margin: 0;
@@ -9,19 +9,33 @@
     scroll-behavior: smooth;
 }
 
+/* Tema Claro (Padrão) */
 :root {
-    --primary: #10b981;      /* Verde Vivo / Principal */
-    --primary-dark: #047857; /* Verde Escuro para Botões/Links */
-    --accent: #d1fae5;       /* Verde Bem Claro para Detalhes e Fundos */
-    --dark: #1f2937;         /* Cinza Escuro para Textos Principais */
-    --light-bg: #f9fafb;     /* Fundo Quase Branco */
-    --white: #ffffff;        /* Branco Puro */
+    --primary: #10b981;       /* Verde Vivo / Principal */
+    --primary-dark: #047857;  /* Verde Escuro para Botões/Links */
+    --accent: #d1fae5;        /* Verde Bem Claro para Detalhes e Fundos */
+    --dark: #1f2937;          /* Cinza Escuro para Textos Principais */
+    --light-bg: #f9fafb;      /* Fundo Quase Branco */
+    --white: #ffffff;         /* Branco Puro */
+    --card-border: #0e441e;   /* Borda original dos cards */
+}
+
+/* Tema Escuro (Ativado via JavaScript) */
+body.dark-theme {
+    --primary: #34d399;       /* Verde ligeiramente mais claro para contraste */
+    --primary-dark: #10b981;  
+    --accent: #064e3b;        /* Verde floresta para fundos de destaque */
+    --dark: #f3f4f6;          /* Texto principal vira cinza claro */
+    --light-bg: #111827;      /* Fundo do site vira cinza escuro */
+    --white: #1f2937;         /* Cards e blocos viram cinza grafite */
+    --card-border: #374151;   /* Borda dos cards suavizada para o escuro */
 }
 
 body {
     color: var(--dark);
-    background-color: var(--white);
+    background-color: var(--light-bg);
     line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -40,6 +54,7 @@ body {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: background-color 0.3s ease;
 }
 
 .nav-container {
@@ -49,16 +64,19 @@ body {
 }
 
 .logo {
+    background: transparent !important;
     display: flex;
     align-items: center;
 }
 
 .logo img {
-    height: 60px;            
-    width: auto;             
+    background: transparent !important;
+    /* Removido o mix-blend-mode daqui */
+    height: 60px;
+    width: auto;
     max-width: 100%;
     display: block;
-    object-fit: contain;     
+    object-fit: contain;
 }
 
 /* Menu para Desktop */
@@ -73,7 +91,7 @@ body {
     margin-left: 25px;
     font-weight: 600;
     font-size: 0.95rem;
-    transition: color 0.3s;
+    transition: color 0.3s ease;
 }
 
 .nav-menu a:hover {
@@ -85,7 +103,7 @@ body {
     color: var(--white);
     padding: 10px 22px;
     border-radius: 25px;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .nav-menu .btn-nav:hover {
@@ -102,11 +120,31 @@ body {
     font-size: 1.8rem;
     cursor: pointer;
     padding: 5px;
-    transition: color 0.3s;
+    transition: color 0.3s ease;
+}
+
+/* Botão de Alternar Tema */
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 8px;
+    margin-left: 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-dark);
+    transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.1);
+    color: var(--primary);
 }
 
 /* ==========================================================================
-   (OTIMIZADO PARA PC - ENCAIXE SEM CORTES)
+   HERO SECTION (OTIMIZADO PARA PC - ENCAIXE SEM CORTES)
    ========================================================================== */
 .hero {
     background-color: var(--accent);
@@ -114,19 +152,20 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
+    transition: background-color 0.3s ease;
 }
 
 .hero-container {
     display: flex;
     align-items: center;
     gap: 40px;
-    width: 90%;             
+    width: 90%;              
     max-width: 1200px;      
-    margin: 0 auto;         
+    margin: 0 auto;          
 }
 
 .hero-content {
-    flex: 1.1;             
+    flex: 1.1;              
 }
 
 .badge {
@@ -138,6 +177,7 @@ body {
     font-weight: 600;
     display: inline-block;
     margin-bottom: 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .hero-content h1 {
@@ -162,7 +202,7 @@ body {
     padding: 12px 25px;
     border-radius: 8px;
     font-weight: 600;
-    transition: transform 0.2s, background-color 0.3s;
+    transition: transform 0.2s ease, background-color 0.3s ease;
     display: inline-flex;
     align-items: center;
     gap: 10px;
@@ -178,7 +218,7 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: #065f46;
+    background-color: #317763;
 }
 
 .btn-secondary {
@@ -215,12 +255,11 @@ body {
     display: none; 
 }
 
-/* Ajustado para preencher de forma elegante no PC respeitando os textos internos */
 .hero-image-slider img, .img-sofa {
     flex: 0 0 100%; 
     width: 100%;
     height: 100%;
-    object-fit: fill; /* Garante o encaixe milimétrico dentro do box do PC */
+    object-fit: fill; 
     border-radius: 20px;
     transition: transform 0.3s ease;
 }
@@ -228,6 +267,10 @@ body {
 /* ==========================================================================
    SERVIÇOS (GRID & CARDS)
    ========================================================================== */
+.services {
+    padding: 80px 0;
+}
+
 .section-title {
     text-align: center;
     margin-bottom: 50px;
@@ -241,7 +284,7 @@ body {
 .google-title-link {
     text-decoration: none; 
     color: inherit; 
-    transition: opacity 0.3s; 
+    transition: opacity 0.3s ease; 
     display: inline-flex; 
     align-items: center; 
     justify-content: center; 
@@ -254,10 +297,6 @@ body {
     letter-spacing: -1px;
 }
 
-.services {
-    padding: 80px 0;
-}
-
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -268,16 +307,16 @@ body {
     background: var(--white);
     padding: 30px;
     border-radius: 12px;
-    border: 1px solid #0e441e;
+    border: 1px solid var(--card-border);
     box-shadow: 0 4px 6px rgba(0,0,0,0.02);
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
     position: relative;
 }
 
 .service-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.15) !important;
+    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.15);
 }
 
 .service-card::after {
@@ -288,7 +327,7 @@ body {
     font-weight: 600;
     margin-top: 15px;
     opacity: 0.6;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s ease;
 }
 
 .service-card:hover::after {
@@ -307,7 +346,7 @@ body {
 }
 
 /* ==========================================================================
-   JANELA MODAL (CARROSSEL DE FOTOS)
+   JANELA MODAL (CARROSSEL DE FOTOS DOS SERVIÇOS)
    ========================================================================== */
 .gallery-modal {
     display: none;
@@ -331,7 +370,7 @@ body {
 }
 
 .modal-content {
-    background-color: #fff;
+    background-color: var(--white);
     padding: 30px;
     border-radius: 16px;
     max-width: 800px;
@@ -339,7 +378,7 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     position: relative;
     transform: scale(0.9);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .gallery-modal.active .modal-content {
@@ -355,22 +394,34 @@ body {
     border: none;
     color: #666;
     cursor: pointer;
-    transition: color 0.2s;
+    transition: color 0.2s ease;
     line-height: 1;
     z-index: 10100;
+}
+
+body.dark-theme .close-modal {
+    color: #aaa;
 }
 
 .close-modal:hover {
     color: #000;
 }
 
+body.dark-theme .close-modal:hover {
+    color: #fff;
+}
+
 .modal-title {
-    color: #333;
+    color: var(--dark);
     font-size: 1.4rem;
     margin-bottom: 20px;
     font-weight: 600;
     border-bottom: 2px solid #eee;
     padding-bottom: 10px;
+}
+
+body.dark-theme .modal-title {
+    border-bottom-color: #374151;
 }
 
 .modal-carousel-wrapper {
@@ -406,13 +457,17 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
+body.dark-theme .modal-photos-slider img {
+    background-color: #111827;
+}
+
 .modal-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: #fff;
-    color: #333;
-    border: 1px solid #ddd;
+    background-color: var(--white);
+    color: var(--dark);
+    border: 1px solid var(--card-border);
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -441,6 +496,7 @@ body {
 .benefits {
     background-color: var(--light-bg);
     padding: 80px 0;
+    transition: background-color 0.3s ease;
 }
 
 .benefits-flex {
@@ -454,16 +510,71 @@ body {
 .benefit-item {
     display: flex;
     gap: 20px;
-    background: var(--white);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    background: linear-gradient(135deg, var(--accent) 0%, var(--white) 100%);
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(4, 120, 87, 0.04);
+    border: 1px solid transparent;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+                box-shadow 0.3s ease, 
+                border-color 0.3s ease;
+}
+
+.benefit-item h4 {
+    color: var(--dark);
+}
+
+.benefit-item:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 12px 24px rgba(16, 185, 129, 0.12);
+    border-color: rgba(16, 185, 129, 0.3);
 }
 
 .benefit-item i {
     font-size: 1.5rem;
     color: var(--primary);
     margin-top: 3px;
+    transition: transform 0.3s ease;
+}
+
+.benefit-item:hover i {
+    transform: rotate(-5px) scale(1.1);
+}
+
+/* ==========================================================================
+   SEÇÃO DE VÍDEO PROFISSIONAL
+   ========================================================================== */
+.video-section {
+    padding: 120px 0; /* Aumentado para a diagonal não cobrir o conteúdo do topo/base */
+    background-color: var(--white);
+    transition: background-color 0.3s ease;
+    
+    /* CRIA O CORTE DIAGONAL NA SEÇÃO */
+    clip-path: polygon(0 0, 100% 4%, 100% 100%, 0 96%);
+    text-align: center; /* Garante a centralização dos elementos internos */
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 480px; /* Reduzido de 850px para ajustar ao formato vertical (celular) */
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0px 15px 35px rgba(4, 120, 87, 0.25); /* Sombra levemente realçada */
+    background-color: #000;
+    
+    /* Alterado de 16/9 para 9/16 para respeitar vídeos gravados em pé */
+    aspect-ratio: 9 / 16; 
+}
+
+.video-wrapper video,
+.video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    object-fit: cover; /* Garante que o vídeo preencha todo o espaço interno sem distorcer */
 }
 
 /* ==========================================================================
@@ -503,14 +614,15 @@ body {
 .testimonials-slider .testimonial-card {
     display: block;
     flex: 0 0 calc(33.333% - 16px) !important; 
-    min-width: 320px !important;               
+    min-width: 320px !important;              
     box-sizing: border-box;
     background-color: var(--light-bg);
     padding: 30px;
     border-radius: 12px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--card-border);
     box-shadow: 0 4px 6px rgba(0,0,0,0.01);
     text-align: left;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .stars {
@@ -525,7 +637,8 @@ body {
 
 .testimonial-card p {
     font-style: italic;
-    color: #4b5563; 
+    color: var(--dark); 
+    opacity: 0.9;
     font-size: 0.95rem;
 }
 
@@ -540,9 +653,9 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: #ffffff;
-    color: #333;
-    border: 1px solid #ddd;
+    background-color: var(--white);
+    color: var(--dark);
+    border: 1px solid var(--card-border);
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -576,17 +689,17 @@ body {
     align-items: center;
     text-decoration: none;
     color: var(--dark);
-    border: 1px solid #ddd;
+    border: 1px solid var(--card-border);
     padding: 10px 20px;
     border-radius: 25px;
     font-weight: 600;
     font-size: 0.9rem;
     background: var(--white);
-    transition: background 0.3s, box-shadow 0.3s;
+    transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .btn-google:hover {
-    background: #f7f9fa;
+    background: var(--light-bg);
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
@@ -598,6 +711,7 @@ body {
     color: var(--white);
     text-align: center;
     padding: 80px 0;
+    transition: background-color 0.3s ease;
 }
 
 .cta-bottom h2 {
@@ -612,8 +726,8 @@ body {
 }
 
 .btn-large {
-    font-size: 1.2rem;
-    padding: 15px 40px;
+    font-size: 1.0rem;
+    padding: 12px 30px;
     background-color: #25d366; 
 }
 
@@ -625,11 +739,15 @@ body {
    RODAPÉ & REDES SOCIAIS
    ========================================================================== */
 footer {
-    background-color: var(--dark);
+    background-color: #1f2937;
     color: #9ca3af;
     padding: 30px 0;
     text-align: center;
     font-size: 0.9rem;
+}
+
+body.dark-theme footer {
+    background-color: #0b0f19;
 }
 
 .footer-socials {
@@ -642,16 +760,17 @@ footer {
 .footer-socials a {
     color: #666;
     font-size: 22px;
-    transition: color 0.3s ease, transform 0.2s;
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .footer-socials a:hover {
     transform: scale(1.1);
 }
 
-.footer-socials a.instagram:hover { color: #E1306C; }
+.footer-socials a.instagram:hover { color: #E1306C;}
 .footer-socials a.facebook:hover { color: #1877F2; }
 .footer-socials a.google:hover { color: #EA4335; }
+
 
 /* ==========================================================================
    BOTÕES FLUTUANTES LATERAIS (DIREITA)
@@ -661,7 +780,7 @@ footer {
     bottom: 20px;
     right: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     gap: 12px;
     z-index: 9999;
 }
@@ -676,16 +795,23 @@ footer {
     color: #fff;
     font-size: 26px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    transition: transform 0.3s ease, filter 0.2s;
+    transition: transform 0.3s ease;
     text-decoration: none;
 }
 
-.float-btn:hover {
-    transform: scale(1.08);
+.float-btn:hover { 
+    transform: scale(1.08); 
 }
 
-.float-whatsapp { background-color: #25D366; }
-.float-instagram { background: #E1306C; }
+.float-whatsapp { background-color: #25D366; order: 1; } 
+
+/* ATUALIZADO: Botão do Instagram permanente com a cor da marca */
+.float-instagram { 
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important; 
+    order: 2; 
+}    
+
+.float-facebook { background-color: #1877F2; order: 3; } 
 
 /* ==========================================================================
    SEÇÃO ANTES E DEPOIS INTERATIVO
@@ -693,6 +819,11 @@ footer {
 .comparison-section {
     padding: 80px 0;
     background-color: #f4f9fc; 
+    transition: background-color 0.3s ease;
+}
+
+body.dark-theme .comparison-section {
+    background-color: #0d131f;
 }
 
 .comparison-slider-container {
@@ -801,7 +932,7 @@ footer {
    ========================================================================== */
 @media (max-width: 992px) { 
     .testimonials-slider .testimonial-card { 
-        flex: 0 0 calc(50% - 12px); 
+        flex: 0 0 calc(50% - 12px) !important; 
     } 
 }
 
@@ -840,12 +971,13 @@ footer {
         top: 100%;          
         left: 0;
         width: 100%; 
-        background-color: #fff;
+        background-color: var(--white);
         box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         padding: 20px;
         box-sizing: border-box;
         z-index: 999;
         gap: 0;
+        transition: background-color 0.3s ease;
     }
     
     .nav-menu.active {
@@ -861,6 +993,22 @@ footer {
         font-size: 0.9rem;
     }
 
+    body.dark-theme .nav-menu a {
+        border-bottom-color: #374151;
+    }
+
+    .theme-toggle-btn {
+        margin-left: 0;
+        padding: 15px 0;
+        width: 100%;
+        justify-content: center;
+        border-bottom: 1px solid #eee;
+    }
+
+    body.dark-theme .theme-toggle-btn {
+        border-bottom-color: #374151;
+    }
+
     .nav-menu .btn-nav {
         background-color: var(--primary);
         border-radius: 4px;
@@ -873,17 +1021,16 @@ footer {
     }
 
     .hero {
-        padding: 20px 0; /* Encurtado para aproximar do topo */
+        padding: 20px 0; 
     }
 
     .hero-container {
         flex-direction: column-reverse;
         text-align: center;
         gap: 25px;
-        width: 95%; /* Alarga o bloco principal no mobile */
+        width: 95%; 
     }
 
-    /* Ajuste Mobile - Imagem maior usando as bordas da tela */
     .hero-image {
         max-width: 100% !important;     
         width: 100% !important;          
@@ -893,7 +1040,6 @@ footer {
         box-shadow: 0px 6px 15px rgba(4, 120, 87, 0.1);
     }
 
-    /* Proporção ideal para manter o texto legível sem cortar as laterais */
     .hero-image-slider img, .img-sofa {
         height: 250px !important;        
         object-fit: fill !important;    
@@ -907,6 +1053,15 @@ footer {
     .hero-buttons {
         justify-content: center;
         flex-direction: column;
+    }
+
+    .video-section {
+        padding: 60px 0;
+    }
+    
+    .video-wrapper {
+        border-radius: 12px;
+        box-shadow: 0px 6px 15px rgba(4, 120, 87, 0.1);
     }
 
     .testimonials-slider .testimonial-card {
