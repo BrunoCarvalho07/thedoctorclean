@@ -220,3 +220,31 @@ if (videoSlider && videoPrevBtn && videoNextBtn) {
         videoSlider.scrollBy({ left: -getVideoScrollAmount(), behavior: 'smooth' });
     });
 }
+
+// HERO IMAGE AUTO-SLIDER (Carrossel de Imagens do Topo)
+const heroSlider = document.querySelector('.hero-image-slider');
+if (heroSlider) {
+    const heroImages = heroSlider.querySelectorAll('.img-sofa');
+    let currentHeroIndex = 0;
+    const totalHeroImages = heroImages.length;
+
+    // Garante que a primeira imagem comece visível e as outras fiquem escondidas por CSS/JS
+    const updateHeroSlider = () => {
+        heroImages.forEach((img, index) => {
+            if (index === currentHeroIndex) {
+                img.style.display = 'block'; // Mostra a imagem atual
+            } else {
+                img.style.display = 'none';  // Esconde as outras
+            }
+        });
+    };
+
+    // Inicializa mostrando apenas a primeira
+    updateHeroSlider();
+
+    // Cria a rotação automática a cada 7000 milissegundos (4 segundos)
+    setInterval(() => {
+        currentHeroIndex = (currentHeroIndex + 1) % totalHeroImages;
+        updateHeroSlider();
+    }, 4000);
+}
