@@ -24,8 +24,8 @@ if (menuToggle && navMenu) {
     });
 }
 
-// DARK MODE / THEME TOGGLE FUNCTIONALITY
-const themeToggleBtn = document.getElementById('theme-toggle');
+// DARK MODE / THEME TOGGLE FUNCTIONALITY (Ajustado para usar classe)
+const themeToggleBtn = document.querySelector('.theme-toggle-btn'); // Alterado de getElementById para querySelector
 if (themeToggleBtn) {
     const icon = themeToggleBtn.querySelector('i');
     
@@ -125,8 +125,7 @@ const servicePhotos = {
     }
 };
 
-
-// MODAL FUNCTIONALITY LOGIC (CORRIGIDO)
+// MODAL FUNCTIONALITY LOGIC
 const modal = document.getElementById('galleryModal');
 const modalTitle = document.getElementById('modalTitle');
 const modalPhotosSlider = document.getElementById('modalPhotosSlider');
@@ -140,8 +139,6 @@ if (modal && modalPhotosSlider && closeModalBtn) {
     document.querySelectorAll('.service-card').forEach(card => {
         card.addEventListener('click', () => {
             const serviceKey = card.getAttribute('data-service');
-            
-            // Correção aqui: acessando o objeto correto 'servicePhotos'
             const serviceData = servicePhotos[serviceKey];
             
             if (!serviceData) {
@@ -162,7 +159,6 @@ if (modal && modalPhotosSlider && closeModalBtn) {
             } else {
                 currentServicePhotos.forEach(photoUrl => {
                     const img = document.createElement('img');
-                    // Correção aqui: photoUrl já é a string com o caminho da imagem
                     img.src = photoUrl; 
                     img.alt = modalTitle.innerText;
                     modalPhotosSlider.appendChild(img);
@@ -200,4 +196,27 @@ if (modal && modalPhotosSlider && closeModalBtn) {
             modalPhotosSlider.scrollBy({ left: -width, behavior: 'smooth' });
         });
     }
+}
+
+// VIDEO CAROUSEL SLIDER CONTROLLER
+const videoSlider = document.getElementById('videoSlider');
+const videoPrevBtn = document.getElementById('videoPrevBtn');
+const videoNextBtn = document.getElementById('videoNextBtn');
+
+if (videoSlider && videoPrevBtn && videoNextBtn) {
+    const getVideoScrollAmount = () => {
+        const videoCard = videoSlider.querySelector('.video-card');
+        if (videoCard) {
+            return videoCard.getBoundingClientRect().width + 20; // Largura do card + gap do CSS
+        }
+        return 400;
+    };
+
+    videoNextBtn.addEventListener('click', () => {
+        videoSlider.scrollBy({ left: getVideoScrollAmount(), behavior: 'smooth' });
+    });
+
+    videoPrevBtn.addEventListener('click', () => {
+        videoSlider.scrollBy({ left: -getVideoScrollAmount(), behavior: 'smooth' });
+    });
 }
