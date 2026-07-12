@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Sua página principal (Home) -->
+  <url>
+    <loc>https://doctorcleaning.com.br/</loc>
+    <lastmod>2026-07-12</lastmod>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- SE TIVER OUTRAS PÁGINAS, repita o bloco abaixo para cada uma. Se não tiver, pode apagar: -->
+  <url>
+    <loc>https://doctorcleaning.com.br/sobre.html</loc>
+    <lastmod>2026-07-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
