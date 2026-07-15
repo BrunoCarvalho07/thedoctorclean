@@ -784,10 +784,30 @@ body.dark-theme .modal-photos-slider img {
     font-size: 1.0rem;
     padding: 12px 30px;
     background-color: #25d366; 
+    /* Adiciona a animação de piscar/pulsar */
+    animation: pulsar-botao 2s infinite ease-in-out;
 }
 
 .btn-large:hover {
     background-color: #20ba5a;
+    /* Pausa a animação quando o usuário passa o mouse por cima */
+    animation-play-state: paused;
+}
+
+/* Efeito suave de piscar/pulsar baseado no brilho e escala */
+@keyframes pulsar-botao {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    50% {
+        transform: scale(1.04); /* Aumenta bem de leve para dar o efeito de pulso */
+        box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
 }
 
 /* ==========================================================================
@@ -852,6 +872,7 @@ body.dark-theme footer {
     box-shadow: 0 4px 12px rgba(0,0,0,0.25);
     transition: transform 0.3s ease;
     text-decoration: none;
+    animation: pulsar-botao 2s infinite ease-in-out;
 }
 
 .float-btn:hover { 
@@ -864,6 +885,8 @@ body.dark-theme footer {
     order: 2; 
 }    
 .float-facebook { background-color: #1877F2; order: 3; } 
+
+
 
 /* ==========================================================================
    SEÇÃO ANTES E DEPOIS INTERATIVO
